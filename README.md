@@ -13,13 +13,17 @@ provide(:title, "Salut")
 * Retourne "Salut" à l'endroit ou la fonction est évaluée sur la vue
 yield(:title)
 
-# rails console shorcuts
+# Rails console
 
+* Shortcuts
 $ rails server	    $ rails s
 $ rails console	    $ rails c
 $ rails generate	  $ rails g
 $ bundle install	  $ bundle
 $ rake test	        $ rake
+
+* test
+$ bundle exec rake test
 
 # Git
 
@@ -32,6 +36,16 @@ $ git push -u origin --all
 * Add a new branch to the remote repository
 $ git checkout -b newbranch
 $ git push -u origin newbranch
+
+* merge new-branch on master
+$ git checkout master
+$ git merge new-branch
+
+* rename a branch
+$ git branch -m <oldname> <newname>
+
+* rename current branch
+$ git branch -m <newname>
 
 # Heroku
 
