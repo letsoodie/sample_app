@@ -104,6 +104,9 @@ $ bundle exec rake db:migrate VERSION=0
 
 - As you might guess, substituting any other number for 0 migrates to that version number, where the version numbers come from listing the migrations sequentially.
 
+# Authentication system
+
+Clearance, Authlogic, Devise, CanCan
 
 
 
