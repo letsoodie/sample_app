@@ -7,6 +7,9 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 
 # Ruby
 
+* identifie les attributs d'une classe
+attr_accessor : :attr1, :attr2, :attr3
+
 # Rails methods
 
 * donne à :title la valeur "Salut"
@@ -15,13 +18,17 @@ provide(:title, "Salut")
 * Retourne "Salut" à l'endroit ou la fonction est évaluée sur la vue
 yield(:title)
 
-# rails console shorcuts
+# Rails console
 
+* shortcuts
 $ rails server	    $ rails s
 $ rails console	    $ rails c
 $ rails generate	  $ rails g
 $ bundle install	  $ bundle
 $ rake test	        $ rake
+
+* open console mode sandbox
+rails c --sandbox
 
 # Git
 
@@ -47,6 +54,8 @@ $ heroku logs #production logs
 
 # Rails generate script
 
+- Convention => controller names are plural, model names are singular
+
 * generate controller
 $ rails generate controller newController action1 action2 action3
 
@@ -58,6 +67,12 @@ $ rails generate model User name:string email:string admin:boolean
 
 * delete model
 $ rails destroy model User
+
+* generate migration
+$ rails generate migration new_migration
+
+* generate migration + attribute + type of attribute
+rails generate migration add_password_digest_to_users password_digest:string
 
 - Controller generation automatically updates the routes file that why we must to specify matched actions when we want to delete a controller
 
@@ -91,6 +106,14 @@ $ touch direction/salut/ici/file.txt
 
 - Any time something isn’t behaving as expected or a process appears to be frozen, it’s a good idea to run ps aux to see what’s going on, and then run kill -9 <pid> or pkill -9 -f <name> to clear things up.
 
+# Rake
+
+* test all
+rake test
+
+* test only models
+rake test:models
+
 # Migrations
 
 * Migrations change the state of the database using the command
@@ -107,6 +130,60 @@ $ bundle exec rake db:migrate VERSION=0
 # Authentication system
 
 Clearance, Authlogic, Devise, CanCan
+
+# Glossaire
+
+* ORM/ODM
+https://github.com/activeadmin/activeadmin/wiki/Object-Mapper-%28ORM-:-ODM%29-ActiveRecord,-Mongoid-and-co.
+
+# Active Record
+
+* crée une instance de User
+salut = User.new
+
+* vérifie si l'objet est valide
+salut.valid?
+
+* si non valid voir le message d'erreur complet
+salut.errors.full_messages
+
+* créer un utilisateur 'salut' dans la bdd
+salut.save
+
+* supprime l'utilisateur 'salut' de la bdd
+salut.destroys
+
+* combinaison de new + save
+User.create
+
+* recherche un user par son id
+User.find(id)
+
+* recherche un user par une clé
+User.find_by(name:'jeanjean')
+
+User.first
+User.all
+
+* affiche l'email de l'utilisateur salut en bdd
+salut.reload.email
+
+* update dude user info (si pass obligatoire ne fonctionnera pas)
+dude.update_attributes(name: "The Dude", email: "dude@abides.org")
+
+* singulier pour une info
+dude.update_attribute(name: "The Dude")
+
+# Model
+
+* converti l'email en downcase avant qu'il soit sauvé en bdd
+before_save { self.email = email.downcase }
+=
+before_save { self.email = self.email.downcase }
+=
+before_save { email = email.downcase }
+
+- inside the User model the self keyword is optional 
 
 
 
