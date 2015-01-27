@@ -10,6 +10,16 @@ by [Michael Hartl](http://www.michaelhartl.com/).
 * identifie les attributs d'une classe
 attr_accessor : :attr1, :attr2, :attr3
 
+* plueralize
+pluralize(1, "error")
+=> "1 error"
+>> pluralize(5, "error")
+=> "5 errors"
+
+.count
+.empty?
+.any?
+
 # Rails methods
 
 * donne à :title la valeur "Salut"
@@ -46,11 +56,20 @@ $ git push -u origin newbranch
 
 $ heroku create
 
-* deploy
+* first deploy
 $ git push heroku master
+
+* then
+$ git push heroku
 
 * look at the production logs
 $ heroku logs #production logs
+
+* migrer la bdd coté serveur avec heroku
+$ heroku run rake db:migrate
+
+* console coté serveur
+$ heroku run console
 
 # Rails generate script
 
@@ -127,6 +146,9 @@ $ bundle exec rake db:migrate VERSION=0
 
 - As you might guess, substituting any other number for 0 migrates to that version number, where the version numbers come from listing the migrations sequentially.
 
+* reset database
+$ bundle exec rake db:migrate:reset
+
 # Authentication system
 
 Clearance, Authlogic, Devise, CanCan
@@ -174,6 +196,9 @@ dude.update_attributes(name: "The Dude", email: "dude@abides.org")
 * singulier pour une info
 dude.update_attribute(name: "The Dude")
 
+* update attributes
+user.update_attributes(name: "newname", email: "new@abides.org")
+
 # Model
 
 * converti l'email en downcase avant qu'il soit sauvé en bdd
@@ -184,6 +209,26 @@ before_save { self.email = self.email.downcase }
 before_save { email = email.downcase }
 
 - inside the User model the self keyword is optional 
+
+# Debug
+
+* somewhere in view
+<%= debug(params) if Rails.env.development? %>
+
+* byebug gem
+debugger
+
+# Dev environments
+
+- If you ever need to run a console in a different environment (to debug a test, for example), you can pass the environment as a parameter to the console script:
+
+  $ rails console test
+
+- As with the console, development is the default environment for the Rails server, but you can also run it in a different environment:
+
+  $ rails server --environment production
+
+# Digest library
 
 
 
