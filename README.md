@@ -133,6 +133,12 @@ rake test
 * test only models
 rake test:models
 
+* Run only one test file
+rake test TEST=test/integration/users_login_test.rb
+
+* Run a specific test 
+rake test TESTOPTS="--name test_name"
+
 # Migrations
 
 * Migrations change the state of the database using the command
@@ -231,6 +237,36 @@ debugger
 # Digest library
 
 
+# Secure Sockets Layer (SSL)
+
+# WEBrick
+
+#  Ternary operator
+
+* classique
+  if boolean?
+    do_one_thing
+  else
+    do_something_else
+  end
+
+  boolean? ? do_one_thing : do_something_else
+
+* assignement
+  if boolean?
+    var = foo
+  else
+    var = bar
+  end
+
+  var = boolean? ? foo : bar
+
+* retour d'une valeur
+  def foo
+    do_stuff
+    boolean? ? "bar" : "baz"
+  end
+- Comme ruby retourne implicitement la valeur de la dernière expression dans une fonction, ici la méthode foo retourne "bar" or "baz" selon si le booléen est true or false.
 
 
 
