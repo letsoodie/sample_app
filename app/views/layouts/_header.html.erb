@@ -6,17 +6,19 @@
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "Help", help_path %></li>
         <% if logged_in? %>
-          <li><%= link_to "Users", '#' %></li>
+          <li><%= link_to "Users", users_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
               <li>
-                <!-- Rails permet de faire un lien sur current_user en convertissant current_user en user_path(current_user) dans ce contexte. On aurait pu écrire : link_to "Profile", user_path(current_user) -->
+                <!-- Rails permet de faire un lien sur current_user en convertissant
+                current_user en user_path(current_user) dans ce contexte.
+                On aurait pu écrire : link_to "Profile", user_path(current_user) -->
                 <%= link_to "Profile", current_user %>
               </li>
-              <li><%= link_to "Settings", '#' %></li>
+              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", logout_path, method: "delete" %>

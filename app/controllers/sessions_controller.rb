@@ -12,14 +12,21 @@ class SessionsController < ApplicationController
       # si la checkbox remember_me est cochée la session sera sauvegardée en local
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
 
-      # redirect to the user's show page
-      redirect_to user
+      redirect_back_or user
     else
-      # Create an error message.
-      flash.now[:danger] = 'Invalid email/password combination' # Not quite right
+      # *flash* persiste pour une requête mais renvoyer un template avec
+      # *render* ne compte pas pour une requête.
+      #*flash.now* est prévu pour ce cas particulier
+      flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
     end
   end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+
 
   def destroy
     log_out if logged_in?
