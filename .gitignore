@@ -19,7 +19,4 @@
 # Ignore Spring files.
 /spring/*.pid
 
-# Ignore README.md
-
-README.md
-DS_Store
+.DS_Store
