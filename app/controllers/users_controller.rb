@@ -77,6 +77,7 @@ class UsersController < ApplicationController
     # Confirms an admin user.
     def admin_user
       if current_user.blank? || !current_user.admin?
+        flash[:danger] = "Please log in as Admin"
         redirect_to(root_url)
       end
     end
