@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # Par défaut before_action est appliqué sur toutes les actions du controlleur.
   # Ici il est restreint aux actions edit et update
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   # S'assure qu'un utilisateur ne puisse modifier que ses propres données.
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
@@ -19,13 +19,11 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)    # Not the final implementation!
+    @user = User.new(user_params)
     if @user.save
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
-      # we could have used the equivalent
-      # redirect_to user_url(@user)
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_url
     else
       render 'new'
     end
@@ -76,9 +74,6 @@ class UsersController < ApplicationController
 
     # Confirms an admin user.
     def admin_user
-      if current_user.blank? || !current_user.admin?
-        flash[:danger] = "Please log in as Admin"
-        redirect_to(root_url)
-      end
+      redirect_to(root_url) unless current_user.admin?
     end
 end
