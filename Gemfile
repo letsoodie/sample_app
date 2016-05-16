@@ -13,6 +13,7 @@ gem 'bcrypt',                  '3.1.7'
 gem 'faker',                   '1.4.2'
 gem 'will_paginate',           '3.0.7'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem 'mailgun_rails'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
@@ -31,5 +32,4 @@ group :production do
   gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
   gem 'unicorn',        '4.8.3'
-  gem 'mailgun_rails'
 end
